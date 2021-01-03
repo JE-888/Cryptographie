@@ -13,12 +13,6 @@ char* uncrypt(char file_name[], float sinkey[3], short singet, char baskey[10]);
 
 int main(void)
 {
-    char *ptr = NULL;
-    float ar[3] = {8.0, 3.5, 5.1};
-    ptr = uncrypt("file.txt", ar, 3, "0123456789");
-    //ptr = crypt("file.txt", ar, 3, "0123456789");
-    free(ptr);
-    printf("Memory is now free. :)\n");
     return 0;
 }
 
