@@ -103,19 +103,24 @@ char* convert_text(char text[])
 
 char* convert_numbers(char numbers[])
 {
-    printf("Hello\n");
-    static char *result = NULL;
-    result = calloc(strlen(numbers)/3, sizeof(char));
-    char three_numbers[3];
+    printf("received : %s\n", numbers);
+    char *result = NULL;
+    result = calloc(strlen(numbers) / 3, sizeof(char));
+    char chars[3] = "";
+    short value;
+    short j = 1;
+
     for (int i = 0 ; i < strlen(numbers) ; i++)
     {
-        printf("Three numbers : %s\n", three_numbers);
-        if (sizeof(i % 3) == sizeof(int))
+        chars[j-1] = numbers[i];
+        if (j >= 3)
         {
-            result[i/3] = ((char) ((int) three_numbers));
-            printf("Added : %c\n", result[i/3]);
-            strcpy(three_numbers, "");
+            value = atoi((const char *) chars);
+            result[i/3] = (char) value;
+            strcpy(chars, "");
+            j = 0;
         }
+        j++;
     }
     return result;
 }
@@ -174,6 +179,7 @@ char* uncrypt(char file_name[], float sinkey[3], short singet, char baskey[10])
         }
         file_content[i] = baskey[index];
     }
+    file_content = convert_numbers(file_content);
     printf("New file content : \"%s\".\n", file_content);
     write_file("output.txt", file_content);
 
